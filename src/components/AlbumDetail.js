@@ -13,13 +13,13 @@ export default class AlbumDetail extends React.Component {
     return (
       <Card>
         <CardSection>
-        <View style={styles.thumbnailContainerStyle}>
-          <Image style={styles.thumbnailStyle} source={{ uri: thumbnail_image }} />
-        </View>
-        <View style={styles.headerContentStyle}>
-          <Text style={styles.albumTitleStyle}>{title}</Text>
-          <Text>{artist}</Text>
-        </View>
+          <View style={styles.thumbnailContainerStyle}>
+            <Image style={styles.thumbnailStyle} source={{ uri: thumbnail_image }} />
+          </View>
+          <View style={styles.headerContentStyle}>
+            <Text style={styles.albumTitleStyle}>{title}</Text>
+            <Text>{artist}</Text>
+          </View>
         </CardSection>
         <CardSection>
           <Image style={styles.albumImageStyle} source={{ uri: image }} />
