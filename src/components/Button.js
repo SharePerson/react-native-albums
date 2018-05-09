@@ -2,10 +2,11 @@ import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
 export default class Button extends React.Component {
+
   render() {
     return (
-      <TouchableOpacity style={styles.buttonStyle}>
-      <Text style={styles.textStyle}>Click Here</Text>
+      <TouchableOpacity style={styles.buttonStyle} onPress={this.props.click}>
+        <Text style={styles.textStyle}>{this.props.text}</Text>
       </TouchableOpacity>
     );
   }
