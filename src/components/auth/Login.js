@@ -1,12 +1,35 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 
-import { Button, Card, CardSection, Header } from '../common';
+import { Button, Card, CardSection, TextBox } from '../common';
 
 export default class Login extends React.Component {
+
+  state = { email: '', password: '' };
+
   render() {
     return (
-      <Text>Login Screen</Text>
+      <Card>
+        <CardSection>
+          <TextBox
+          label="Email"
+          placeholder="user@email.com"
+          textChanged={value => this.setState({ email: value })}
+          />
+        </CardSection>
+
+        <CardSection>
+          <TextBox
+            label="Password"
+            placeholder="password"
+            textChanged={value => this.setState({ password: value })}
+            secure
+          />
+        </CardSection>
+
+        <CardSection>
+          <Button>Login</Button>
+        </CardSection>
+      </Card>
     );
   }
 }

@@ -23,7 +23,9 @@ export default class AlbumDetail extends React.Component {
           <Image style={styles.albumImageStyle} source={{ uri: image }} />
         </CardSection>
         <CardSection>
-          <Button click={() => Linking.openURL(url)} text="Buy Now" />
+          <Button click={() => Linking.openURL(url)}>
+            Buy Now
+          </Button>
         </CardSection>
       </Card>
     );
