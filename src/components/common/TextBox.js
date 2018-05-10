@@ -19,6 +19,7 @@ class TextBox extends React.Component {
           value={this.state.value}
           style={styles.inputStyle}
           secureTextEntry={this.props.secure}
+          keyboardType={this.props.type}
         />
       </View>
     );

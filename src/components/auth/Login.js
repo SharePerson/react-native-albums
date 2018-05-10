@@ -14,6 +14,7 @@ export default class Login extends React.Component {
           label="Email"
           placeholder="user@email.com"
           textChanged={value => this.setState({ email: value })}
+          type="email-address"
           />
         </CardSection>
 
