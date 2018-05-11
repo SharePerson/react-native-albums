@@ -14,7 +14,7 @@ class TextBox extends React.Component {
           autoCorrect={false}
           onChangeText={text => {
             this.setState({ value: text });
-            this.props.textChanged(this.state.value);
+            this.props.textChanged(text);
           }}
           value={this.state.value}
           style={styles.inputStyle}

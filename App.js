@@ -3,9 +3,8 @@ import { View } from 'react-native';
 import firebase from 'firebase';
 
 import { Header } from './src/components/common';
+import AlbumList from './src/components/AlbumList';
 import Login from './src/components/auth/Login';
-
-//import AlbumList from './src/components/AlbumList';
 
 export default class App extends React.Component {
 
@@ -25,6 +24,7 @@ export default class App extends React.Component {
       <View style={{ flex: 1 }}>
         <Header headerText="Albums" />
         <Login />
+        <AlbumList />
       </View>
     );
   }
