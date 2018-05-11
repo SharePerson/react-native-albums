@@ -5,10 +5,10 @@ import { View, ActivityIndicator } from 'react-native';
 class Spinner extends React.Component {
   render() {
     return (
-      <View>
-        <ActivityIndicator style={styles.spinnerStyle} size={this.props.size || 'large'} />
+      <View style={styles.spinnerStyle}>
+        <ActivityIndicator size={this.props.size || 'large'} />
       </View>
-    );
+    ); 
   }
 }
 

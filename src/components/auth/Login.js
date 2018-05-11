@@ -44,6 +44,7 @@ export default class Login extends React.Component {
           <TextBox
           label="Email"
           placeholder="user@email.com"
+          value={this.state.email}
           textChanged={value => {
             this.setState({ email: value });
           }}
@@ -55,6 +56,7 @@ export default class Login extends React.Component {
           <TextBox
             label="Password"
             placeholder="password"
+            value={this.state.password}
             textChanged={value => {
               this.setState({ password: value });
             }}
