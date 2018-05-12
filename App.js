@@ -2,13 +2,14 @@ import React from 'react';
 import { View } from 'react-native';
 import firebase from 'firebase';
 
-import { Header, Button, Spinner } from './src/components/common';
-import AlbumList from './src/components/AlbumList';
+import { Header, Spinner } from './src/components/common';
 import Login from './src/components/auth/Login';
+import Home from './src/components/Home';
+import AlbumList from './src/components/AlbumList';
 
 export default class App extends React.Component {
 
-  state = { loggedIn: null };
+  state = { loggedIn: null, screen: 'home' };
 
   componentWillMount() {
       firebase.initializeApp({
@@ -25,16 +26,53 @@ export default class App extends React.Component {
     });
   }
 
+  renderHome() {
+    switch (this.state.screen) {
+      case 'home':
+      return (
+        <View>
+      <Header headerText="Home" />
+      <Home
+      click={screen => {
+          switch (screen) {
+            case 'albums':
+            this.setState({ screen: 'albums' });
+            break;
+            case 'technologies':
+            this.setState({ screen: 'technologies' });
+            break;
+            default:
+            this.setState({ screen: 'home' });
+            break;
+          }
+      }}
+      />
+      </View>
+    );
+      case 'albums':
+      return (
+        <View>
+          <Header headerText="Albums" />
+          <AlbumList />
+        </View>
+      );
+      case 'technologies':
+      return (
+        <View>
+          <Header headerText="Technologies" />
+        </View>
+      );
+      default:
+      break;
+    }
+  }
+
   renderAuthBased() {
     switch (this.state.loggedIn) {
       case true:
       return (
         <View>
-          <Header headerText="Albums" />
-          <View>
-            <Button click={() => firebase.auth().signOut()}>Log Out</Button>
-          </View>
-          <AlbumList />
+          {this.renderHome()}
         </View>
       );
       case false:
