@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import reducers from '../reducers';
-import { Header } from './common';
+import LibraryList from './LibraryList';
 
 
 export default class TechnologyList extends React.Component {
@@ -12,9 +12,8 @@ export default class TechnologyList extends React.Component {
     return (
       <Provider store={createStore(reducers)}>
       <View>
-        <Header headerText="Technologies" />
         <View>
-          <Text>Technology List Component</Text>
+          <LibraryList />
         </View>
       </View>
       </Provider>
