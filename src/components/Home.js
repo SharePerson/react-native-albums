@@ -43,18 +43,16 @@ export default class Home extends React.Component {
 
 const styles = {
     homeContainer: {
-      flex: 1,
       justifyContent: 'space-around',
       flexDirection: 'column'
     },
     boxesContainerStyle: {
       justifyContent: 'space-around',
       flexDirection: 'row',
-      marginTop: 10,
-      flex: 1
+      marginTop: 10
     },
     logoutContainer: {
-      flex: 2
+      height: 40
     },
     boxStyle: {
       backgroundColor: '#d9d9d9',

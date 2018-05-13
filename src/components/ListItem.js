@@ -8,9 +8,16 @@ export default class ListItem extends React.Component {
       return (
         <View>
           <CardSection>
-            <Text>{this.props.item.title}</Text>
+            <Text style={styles.titleStyle}>{this.props.item.title}</Text>
           </CardSection>
         </View>
       );
     }
 }
+
+const styles = {
+  titleStyle: {
+    fontSize: 18,
+    paddingLeft: 15
+  }
+};

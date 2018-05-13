@@ -31,23 +31,23 @@ export default class App extends React.Component {
     switch (this.state.screen) {
       case 'home':
       return (
-        <View>
-      <Header headerText="Home" />
-      <Home
-      click={screen => {
-          switch (screen) {
-            case 'albums':
-            this.setState({ screen: 'albums' });
-            break;
-            case 'technologies':
-            this.setState({ screen: 'technologies' });
-            break;
-            default:
-            this.setState({ screen: 'home' });
-            break;
-          }
-      }}
-      />
+      <View style={{ flex: 1 }}>
+        <Header headerText="Home" />
+        <Home
+        click={screen => {
+            switch (screen) {
+              case 'albums':
+              this.setState({ screen: 'albums' });
+              break;
+              case 'technologies':
+              this.setState({ screen: 'technologies' });
+              break;
+              default:
+              this.setState({ screen: 'home' });
+              break;
+            }
+        }}
+        />
       </View>
     );
       case 'albums':
@@ -59,7 +59,7 @@ export default class App extends React.Component {
       );
       case 'technologies':
       return (
-          <View>
+          <View style={{ flex: 1 }}>
             <Header headerText="Technologies" />
             <TechnologyList />
           </View>
@@ -73,9 +73,7 @@ export default class App extends React.Component {
     switch (this.state.loggedIn) {
       case true:
       return (
-        <View>
-          {this.renderHome()}
-        </View>
+          this.renderHome()
       );
       case false:
       return (
