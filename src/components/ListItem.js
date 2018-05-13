@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
+import { connect } from 'react-redux';
 
 import { CardSection } from './common';
+import * as actions from '../actions';
 
-export default class ListItem extends React.Component {
+class ListItem extends React.Component {
     render() {
       return (
-        <View>
-          <CardSection>
-            <Text style={styles.titleStyle}>{this.props.item.title}</Text>
-          </CardSection>
-        </View>
+        <CardSection>
+          <Text style={styles.titleStyle}>{this.props.item.title}</Text>
+        </CardSection>
       );
     }
 }
@@ -21,3 +21,7 @@ const styles = {
     paddingLeft: 15
   }
 };
+
+const mapStateToProps = state => ({ selectedLibraryId: state.selectedLibraryId });
+
+export default connect(mapStateToProps)(ListItem);
