@@ -6,6 +6,7 @@ import { Header, Spinner } from './src/components/common';
 import Login from './src/components/auth/Login';
 import Home from './src/components/Home';
 import AlbumList from './src/components/AlbumList';
+import TechnologyList from './src/components/TechnologyList';
 
 export default class App extends React.Component {
 
@@ -58,9 +59,10 @@ export default class App extends React.Component {
       );
       case 'technologies':
       return (
-        <View>
-          <Header headerText="Technologies" />
-        </View>
+          <View>
+            <Header headerText="Technologies" />
+            <TechnologyList />
+          </View>
       );
       default:
       break;
