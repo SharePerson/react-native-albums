@@ -45,9 +45,7 @@ const styles = {
   }
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const expanded = state.selectedLibraryId === ownProps.item.id;
-  return { expanded };
-};
+const mapStateToProps = (state, ownProps) =>
+({ expanded: state.selectedLibraryId === ownProps.item.id });
 
 export default connect(mapStateToProps, actions)(ListItem);
