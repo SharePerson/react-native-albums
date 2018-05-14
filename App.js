@@ -1,26 +1,25 @@
 import React from 'react';
 import { View } from 'react-native';
 import firebase from 'firebase';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
 import { Header, Spinner } from './src/components/common';
 import Login from './src/components/auth/Login';
 import Home from './src/components/Home';
 import AlbumList from './src/components/AlbumList';
 import TechnologyList from './src/components/TechnologyList';
+import reducers from './src/reducers';
+import * as fb from './src/data-access/firebase-init';
+
+const store = createStore(reducers);
 
 export default class App extends React.Component {
 
   state = { loggedIn: null, screen: 'home' };
 
   componentWillMount() {
-      firebase.initializeApp({
-      apiKey: 'AIzaSyDZ56iqRtcILZYvE29n0DWQMth6-Ehd-V4',
-      authDomain: 'react-native-albums-79433.firebaseapp.com',
-      databaseURL: 'https://react-native-albums-79433.firebaseio.com',
-      projectId: 'react-native-albums-79433',
-      storageBucket: 'react-native-albums-79433.appspot.com',
-      messagingSenderId: '710741411860'
-    });
+    fb.initFirebase();
 
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ loggedIn: user != null });
@@ -91,9 +90,11 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        {this.renderAuthBased()}
-      </View>
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+          {this.renderAuthBased()}
+        </View>
+      </Provider>
     );
   }
 }
