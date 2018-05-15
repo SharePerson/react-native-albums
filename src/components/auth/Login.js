@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import { Button, Card, CardSection, TextBox } from '../common';
@@ -37,22 +36,17 @@ class Login extends React.Component {
             secure
           />
         </CardSection>
-        <Text style={styles.errorTextStyle}>{this.state.error}</Text>
         <CardSection>
-          <Button click={this.onLoginButtonPress.bind(this)}>Login</Button>
+          <Button
+          click={() => console.log(this.props.email, ' _ ', this.props.password)}
+          >
+          Login
+          </Button>
         </CardSection>
       </Card>
     );
   }
 }
-
-const styles = {
-  errorTextStyle: {
-    fontSize: 20,
-    alignSelf: 'center',
-    color: 'red'
-  }
-};
 
 const mapStateToProps = state => ({ email: state.auth.email, password: state.auth.password });
 
