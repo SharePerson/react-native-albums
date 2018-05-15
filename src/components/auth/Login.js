@@ -1,40 +1,18 @@
 import React from 'react';
-import firebase from 'firebase';
-import { Text, Alert } from 'react-native';
+import { Text } from 'react-native';
+import connect from 'react-redux';
 
-import { Button, Card, CardSection, TextBox, Spinner } from '../common';
+import { Button, Card, CardSection, TextBox } from '../common';
+import { emailChanged, passwordChanged } from '../../actions';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
 
-  state = { email: '', password: '', error: '', loading: false };
-
-  onLoginButtonPress() {
-    this.setState({ error: '', loading: true });
-
-    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-    .then(this.onLoginSuccess.bind(this))
-    .catch(() => {
-      firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(this.onLoginSuccess.bind(this))
-      .catch((error) => this.onLoginFail(error.message));
-    });
+  onEmailChange(text) {
+    this.props.emailChanged(text);
   }
 
-  onLoginSuccess() {
-    this.setState({ email: '', password: '', loading: false, error: '' });
-  }
-
-  onLoginFail(errorMessage) {
-    this.setState({ error: 'Authentication Failed!', loading: false });
-    Alert.alert(errorMessage);
-  }
-
-  renderButton() {
-    if (this.state.loading) {
-      return <Spinner size="small" />;
-    }
-
-    return <Button click={this.onLoginButtonPress.bind(this)}>Login</Button>;
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
   }
 
   render() {
@@ -44,11 +22,9 @@ export default class Login extends React.Component {
           <TextBox
           label="Email"
           placeholder="user@email.com"
-          value={this.state.email}
-          textChanged={value => {
-            this.setState({ email: value });
-          }}
+          value={this.props.email}
           type="email-address"
+          textChanged={this.onEmailChange.bind(this)}
           />
         </CardSection>
 
@@ -56,16 +32,14 @@ export default class Login extends React.Component {
           <TextBox
             label="Password"
             placeholder="password"
-            value={this.state.password}
-            textChanged={value => {
-              this.setState({ password: value });
-            }}
+            value={this.props.password}
+            textChanged={this.onPasswordChange.bind(this)}
             secure
           />
         </CardSection>
         <Text style={styles.errorTextStyle}>{this.state.error}</Text>
         <CardSection>
-          {this.renderButton()}
+          <Button click={this.onLoginButtonPress.bind(this)}>Login</Button>
         </CardSection>
       </Card>
     );
@@ -79,3 +53,7 @@ const styles = {
     color: 'red'
   }
 };
+
+const mapStateToProps = state => ({ email: state.auth.email, password: state.auth.password });
+
+export default connect(mapStateToProps, { emailChanged, passwordChanged })(Login);
