@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
-import connect from 'react-redux';
+import { connect } from 'react-redux';
 
 import { Button, Card, CardSection, TextBox } from '../common';
 import { emailChanged, passwordChanged } from '../../actions';
